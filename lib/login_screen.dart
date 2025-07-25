@@ -51,9 +51,10 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         if (e.code == 'network-request-failed') {
           error = "No Internet Connection. Please try again.";
-        } else if (e.code == 'user-not-found' ||
-            e.code == 'invalid-credential') {
-          error = "These credentials are not registered. Please sign up first.";
+        } else if (e.code == 'user-not-found') {
+          error = "No user registered with this email. Please sign up first.";
+        } else if (e.code == 'invalid-credential') {
+          error = "Ïncorrect Password or Email,Please Check";
         } else if (e.code == 'wrong-password') {
           error = "Incorrect password. Try again.";
         } else {
@@ -81,7 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
         width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFE3FDFD), Color(0xFFCBF1F5)],
+            colors: [
+              Color(0xFFE3FDFD),
+              Color.fromARGB(255, 191, 241, 246),
+            ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
