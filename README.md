@@ -7,9 +7,8 @@ This is a simple Flutter app that demonstrates Firebase Authentication using Ema
 
 Demonstrate the ability to integrate backend services by implementing user authentication (Sign Up, Sign In, Sign Out) using Firebase.
 
----
 
-#Features
+# Features
 
 - Email & Password **Sign Up**
 -  Email & Password **Login**
