@@ -54,6 +54,18 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (message != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message!),
+            backgroundColor:
+                message!.contains('sent') ? Colors.green : Colors.red,
+          ),
+        );
+        message = null;
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Forgot Password"),
@@ -86,8 +98,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 onChanged: (_) => setState(() {}),
               ),
               const SizedBox(height: 16),
-              if (message != null)
-                Text(message!, style: const TextStyle(color: Colors.blue)),
               isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(

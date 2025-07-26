@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
         } else if (e.code == 'user-not-found') {
           error = "No user registered with this email. Please sign up first.";
         } else if (e.code == 'invalid-credential') {
-          error = "Ïncorrect Password or Email,Please Check";
+          error = "Ïncorrect Password or Email, Please Check";
         } else if (e.code == 'wrong-password') {
           error = "Incorrect password. Try again.";
         } else {
@@ -70,6 +70,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (error != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error!), backgroundColor: Colors.red),
+        );
+        error = null;
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Login"),
@@ -131,8 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 8,
                 ),
-                if (error != null)
-                  Text(error!, style: const TextStyle(color: Colors.red)),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(

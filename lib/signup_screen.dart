@@ -65,6 +65,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (error != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error!), backgroundColor: Colors.red),
+        );
+        error = null; // clear after showing
+      });
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Sign Up"),
@@ -119,8 +127,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 onChanged: (_) => setState(() {}),
               ),
-              if (error != null)
-                Text(error!, style: const TextStyle(color: Colors.red)),
               const SizedBox(height: 16),
               isLoading
                   ? const CircularProgressIndicator()
